@@ -23,8 +23,9 @@ function Test() {
       if (!resp.ok) throw new Error(await resp.text());
       const data = await resp.json();
       setStatus(`ok: ${JSON.stringify(data[0] ?? data)}`);
-    } catch (e) {
-      setStatus(`error: ${e.message}`);
+    }  catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      setStatus(`error: ${msg}`);
     }
   };
 
