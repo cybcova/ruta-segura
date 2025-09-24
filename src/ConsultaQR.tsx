@@ -136,7 +136,7 @@ export default function ConsultaQR() {
               style={{
                 padding: "2px 8px",
                 borderRadius: 12,
-                background: row.estatus?.toLowerCase() === "activo" ? "#e6ffe6" : "#f5f5f5",
+                background: row.estatus?.toLowerCase() === "activo" ? "#000" : "#000",
                 border: "1px solid #ddd",
               }}
             >
