@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function Test() {
   const [status, setStatus] = useState("idle");
+  const [message, setMessage] = useState("Holi"); // valor inicial
 
   const send = async () => {
     setStatus("loading");
@@ -15,15 +16,15 @@ function Test() {
           "Content-Type": "application/json",
           "apikey": anon,
           "Authorization": `Bearer ${anon}`,
-          "Prefer": "return=representation" // para ver lo insertado
+          "Prefer": "return=representation"
         },
-        body: JSON.stringify({ message: "Holi" })
+        body: JSON.stringify({ message }) // 👈 usamos el valor dinámico
       });
 
       if (!resp.ok) throw new Error(await resp.text());
       const data = await resp.json();
       setStatus(`ok: ${JSON.stringify(data[0] ?? data)}`);
-    }  catch (e: unknown) {
+    } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : String(e);
       setStatus(`error: ${msg}`);
     }
@@ -31,8 +32,15 @@ function Test() {
 
   return (
     <div style={{display:"grid",placeItems:"center",minHeight:"100dvh",gap:12}}>
+      <input
+        type="text"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Escribe tu mensaje"
+        style={{padding:8, fontSize:16}}
+      />
       <button onClick={send} disabled={status==="loading"} style={{padding:12,fontSize:18}}>
-        {status==="loading" ? "Enviando..." : "Enviar 'Holi'"}
+        {status==="loading" ? "Enviando..." : "Enviar"}
       </button>
       <code>{status}</code>
     </div>
