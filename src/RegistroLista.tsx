@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-type InsertPayload = {
+/*type InsertPayload = {
   codigo_qr_id: string;
   estatus: string;
   lista: string;
-};
+};*/
 
 
 export default function RegistroLista() {
