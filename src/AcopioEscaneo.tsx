@@ -45,7 +45,10 @@ export default function AcopioEscaneo() {
           scanDelay={300} // evita múltiples lecturas por segundo
           constraints={{ facingMode: "environment" }} // cámara trasera en móviles
           components={{ finder: true, torch: true, zoom: true }} // UI útil
-          style={{ width: "100%" }}
+          styles={{
+           container: { width: "100%" },      // ocupa el contenedor
+            video: { width: "100%", height: "auto" }, // por si quieres forzar el video
+    }}
         />
       </div>
 
