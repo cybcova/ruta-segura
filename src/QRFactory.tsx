@@ -4,7 +4,7 @@ import QRCode from "qrcode";
 export default function QRFactory() {
   const [items, setItems] = useState<Item[]>([]);
   const [count, setCount] = useState(1);
-  const route = "test"; // tu ruta hash: #/test
+  const route = "ConsultaQR"; // tu ruta hash: #/test
 
   const makeUUID = () => {
     if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
@@ -18,7 +18,7 @@ export default function QRFactory() {
   };
 
   const makeUrl = (id: string) =>
-    `${window.location.origin}/#/${route}?m=${encodeURIComponent(id)}`;
+    `${window.location.origin}/#/${route}?uuid=${encodeURIComponent(id)}`;
 
 const saveInSupabase = async (uuid: string) => {
   const url = `${import.meta.env.VITE_SUPABASE_URL}/rest/v1/codigos_qr`;
