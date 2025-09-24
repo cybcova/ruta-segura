@@ -1,8 +1,6 @@
 import { useState } from "react";
 import QRCode from "qrcode";
 
-type Item = { id: string; url: string; dataUrl: string; dbId?: string };
-
 export default function QRFactory() {
   const [items, setItems] = useState<Item[]>([]);
   const [count, setCount] = useState(1);
