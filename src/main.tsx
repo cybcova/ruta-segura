@@ -4,6 +4,8 @@ import App from "./App";
 import Test from "./Test";
 import QRFactory from "./QRFactory";
 import ConsultaQR from "./ConsultaQR";
+import AcopioEscaneo from "./AcopioEscaneo";
+import RegistroLista from "./RegistroLista";
 import "./index.css";
 
 const container = document.getElementById("root") as HTMLElement;
@@ -15,6 +17,8 @@ createRoot(container).render(
       <Route path="/test" element={<Test />} />
       <Route path="/QRFactory" element={<QRFactory />} />
       <Route path="/ConsultaQR" element={<ConsultaQR  />} />
+      <Route path="/acopioEscaneo" element={<AcopioEscaneo />} />
+      <Route path="/registroLista" element={<RegistroLista />} />
     </Routes>
   </HashRouter>
 );
