@@ -7,6 +7,7 @@ type InsertPayload = {
   lista: string;
 };
 
+
 export default function RegistroLista() {
   const loc = useLocation();
   const params = useMemo(() => new URLSearchParams(loc.search), [loc.search]);
@@ -23,59 +24,62 @@ export default function RegistroLista() {
   }, [uuid]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!uuid) {
-      setStatus("error");
-      setMsg("Falta el parámetro uuid en la URL.");
-      return;
-    }
-    if (!lista.trim()) {
-      setStatus("error");
-      setMsg("La lista no puede estar vacía.");
-      return;
-    }
+  e.preventDefault();
+  if (!uuid) {
+    setStatus("error");
+    setMsg("Falta el parámetro uuid en la URL.");
+    return;
+  }
+  if (!lista.trim()) {
+    setStatus("error");
+    setMsg("La lista no puede estar vacía.");
+    return;
+  }
 
-    setStatus("loading");
-    setMsg("");
+  setStatus("loading");
+  setMsg("");
 
-    try {
-      const base = import.meta.env.VITE_SUPABASE_URL as string;
-      const anon = import.meta.env.VITE_SUPABASE_ANON as string;
+  try {
+        const base = import.meta.env.VITE_SUPABASE_URL as string;
+        const anon = import.meta.env.VITE_SUPABASE_ANON as string;
 
-      const url = `${base}/rest/v1/listas_acopio`;
-
-      const payload: InsertPayload = {
+        // 1) INSERT en listas_acopio
+        const insertUrl = `${base}/rest/v1/listas_acopio`;
+        const insertPayload = {
         codigo_qr_id: uuid,
-        estatus : "registrada",
+        //estatus,                 // si lo comentaste en la UI, queda "registrada" por default en el state
         lista: lista.trim(),
-      };
+        };
 
-      const resp = await fetch(url, {
+        const insertResp = await fetch(insertUrl, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          apikey: anon,
-          Authorization: `Bearer ${anon}`,
-          // Evita depender de SELECT post-insert si RLS no lo permite:
-          Prefer: "return=minimal",
+            "Content-Type": "application/json",
+            apikey: anon,
+            Authorization: `Bearer ${anon}`,
+            Prefer: "return=minimal",
         },
-        body: JSON.stringify(payload),
-      });
+        body: JSON.stringify(insertPayload),
+        });
 
-      if (resp.status === 201) {
+        if (insertResp.status !== 201) {
+        const txt = await insertResp.text();
+        throw new Error(`POST listas_acopio → HTTP ${insertResp.status}: ${txt}`);
+        }
+
+        // 2) PATCH a codigos_qr (estatus="En acopio", updated_at=now)
+        await updateCodigoQR(uuid);
+
         setStatus("ok");
-        setMsg("Registro guardado correctamente.");
+        setMsg("Registro guardado y QR marcado como 'En acopio'.");
         // Opcional: limpia el textarea
         // setLista("");
-      } else {
-        const txt = await resp.text();
-        throw new Error(`HTTP ${resp.status}: ${txt}`);
-      }
     } catch (err) {
-      setStatus("error");
-      setMsg(err instanceof Error ? err.message : String(err));
+        setStatus("error");
+        setMsg(err instanceof Error ? err.message : String(err));
     }
-  };
+    };
+
 
   return (
     <div style={{ padding: 16, maxWidth: 720, margin: "0 auto" }}>
@@ -153,3 +157,32 @@ export default function RegistroLista() {
     </div>
   );
 }
+
+        {/* Funciones extrasss *****************+        */}
+
+const updateCodigoQR = async (uuid: string) => {
+  const base = import.meta.env.VITE_SUPABASE_URL as string;
+  const anon = import.meta.env.VITE_SUPABASE_ANON as string;
+
+  const url = `${base}/rest/v1/codigos_qr?uuid=eq.${encodeURIComponent(uuid)}`;
+  const body = {
+    estatus: "En acopio",
+    updated_at: new Date().toISOString().replace("T", " ").replace("Z", "+00")
+  };
+
+  const resp = await fetch(url, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: anon,
+      Authorization: `Bearer ${anon}`,
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!resp.ok) {
+    const txt = await resp.text();
+    throw new Error(`PATCH codigos_qr → HTTP ${resp.status}: ${txt}`);
+  }
+};
