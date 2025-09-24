@@ -13,7 +13,7 @@ export default function RegistroLista() {
   const uuid = params.get("uuid");
 
   const [lista, setLista] = useState("");
-  const [estatus, setEstatus] = useState<"registrada" | "pendiente" | "cancelada">("registrada");
+  //const [estatus, setEstatus] = useState<"registrada" | "pendiente" | "cancelada">("registrada");
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [msg, setMsg] = useState<string>("");
 
@@ -127,7 +127,7 @@ export default function RegistroLista() {
             type="button"
             onClick={() => {
               setLista("");
-              setEstatus("registrada");
+              //setEstatus("registrada");
               setStatus("idle");
               setMsg("");
             }}
