@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function App() {
+function Test() {
   const [status, setStatus] = useState("idle");
 
   const send = async () => {
@@ -38,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default Test;
