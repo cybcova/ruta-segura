@@ -4,9 +4,10 @@ import { useLocation } from "react-router-dom";
 
 type QRRow = {
   uuid: string;
-  estatus: string;
-  created_at: string;
-  updated_at: string;
+  qr_estatus: string;
+  qr_created_at: string;
+  qr_updated_at: string;
+  lista_texto: string;
 };
 
 const UUID_RE =
@@ -57,9 +58,9 @@ export default function ConsultaQR() {
 
       try {
         const url =
-          `${base}/rest/v1/codigos_qr` +
-          `?uuid=eq.${encodeURIComponent(uuid)}` +
-          `&select=uuid,estatus,created_at,updated_at`;
+          `${base}/rest/v1/vw_codigos_qr_con_listas` +
+          `?uuid=eq.${encodeURIComponent(uuid)}`;// +
+          //`&select=uuid,estatus,created_at,updated_at`;
 
         const resp = await fetch(url, {
           headers: {
@@ -136,19 +137,24 @@ export default function ConsultaQR() {
               style={{
                 padding: "2px 8px",
                 borderRadius: 12,
-                background: row.estatus?.toLowerCase() === "activo" ? "#000" : "#000",
+                background: row.qr_estatus?.toLowerCase() === "activo" ? "#000" : "#000",
                 border: "1px solid #ddd",
               }}
             >
-              {row.estatus ?? "-"}
+              {row.qr_estatus ?? "-"}
             </span>
           </div>
           <div>
-            <strong>Creado:</strong> {format(row.created_at)}
+            <strong>Creado:</strong> {format(row.qr_created_at)}
           </div>
           <div>
-            <strong>Actualizado:</strong> {format(row.updated_at)}
+            <strong>Actualizado:</strong> {format(row.qr_updated_at)}
           </div>
+            {row.lista_texto != null ? (
+            <div>
+                <strong>Lista de Viveres:</strong> {row.lista_texto}
+            </div>
+            ) : null}
         </div>
       )}
     </div>
