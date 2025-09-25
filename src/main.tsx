@@ -7,6 +7,7 @@ import ConsultaQR from "./ConsultaQR";
 import AcopioEscaneo from "./AcopioEscaneo";
 import RegistroLista from "./RegistroLista";
 import KitsRegistro from "./KitsRegistro";
+import RecepcionKit from "./RecepcionKit";
 import "./index.css";
 
 const container = document.getElementById("root") as HTMLElement;
@@ -21,6 +22,7 @@ createRoot(container).render(
       <Route path="/acopioEscaneo" element={<AcopioEscaneo />} />
       <Route path="/registroLista" element={<RegistroLista />} />
       <Route path="/kitsRegistro" element={<KitsRegistro />} />
+      <Route path="/recepcionKit" element={<RecepcionKit />} />
     </Routes>
   </HashRouter>
 );
