@@ -66,7 +66,7 @@ export default function KitsRegistro() {
       setKitId(row.id);
 
       // 2) Construye URL para recepción
-      const url = `${base}/#/${"recepcionKit"}?uuid=${encodeURIComponent(row.id)}`;
+      const url = `${window.location.origin}/#/${"recepcionKit"}?uuid=${encodeURIComponent(row.id)}`;
       setKitUrl(url);
 
       // 3) Genera QR (PNG base64)
