@@ -8,6 +8,7 @@ import AcopioEscaneo from "./AcopioEscaneo";
 import RegistroLista from "./RegistroLista";
 import KitsRegistro from "./KitsRegistro";
 import RecepcionKit from "./RecepcionKit";
+
 import "./index.css";
 
 const container = document.getElementById("root") as HTMLElement;
