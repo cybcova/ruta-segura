@@ -4,11 +4,11 @@
   <defs>
     <style>
       :root {
-        --accent: #1c5a54ff;   /* verde petróleo */
-        --accent-2: #07897aff; /* aqua */
+        --accent: #18635bff;   /* verde petróleo */
+        --accent-2: #13ab99ff; /* aqua */
         --bg: #fff;
       }
-      .shield { fill: var(--bg); stroke: var(--accent); stroke-width: 16; stroke-linejoin: round; }
+      .shield { fill: none; stroke: var(--accent); stroke-width: 16; stroke-linejoin: round; }
       .pin { fill: var(--accent-2); stroke: var(--accent); stroke-width: 12; }
       .pin-hole { fill: var(--bg); }
       .badge { fill: var(--accent-2); stroke: var(--accent); stroke-width: 4; }
