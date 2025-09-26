@@ -1,5 +1,6 @@
+// src/main.tsx
 import { createRoot } from "react-dom/client";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import App from "./App";
 import Test from "./Test";
 import QRFactory from "./QRFactory";
@@ -9,24 +10,45 @@ import RegistroLista from "./RegistroLista";
 import KitsRegistro from "./KitsRegistro";
 import RecepcionKit from "./RecepcionKit";
 import PanelAcopio from "./PanelAcopio";
-
+import HeaderMenu from "./HeaderMenu";
 
 import "./index.css";
 
 const container = document.getElementById("root") as HTMLElement;
 
+function LayoutWithConditionalHeader() {
+  const location = useLocation();
+  const showHeaderOn = new Set([
+    "/QRFactory",
+    "/acopioEscaneo",
+    "/kitsRegistro",
+    "/panelAcopio",
+  ]);
+
+  const showHeader = showHeaderOn.has(location.pathname);
+
+  return (
+    <>
+      {showHeader && <HeaderMenu />}
+      <div style={{ maxWidth: 1024, margin: "0 auto", padding: "12px 16px" }}>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/QRFactory" element={<QRFactory />} />
+          <Route path="/ConsultaQR" element={<ConsultaQR />} />
+          <Route path="/acopioEscaneo" element={<AcopioEscaneo />} />
+          <Route path="/registroLista" element={<RegistroLista />} />
+          <Route path="/kitsRegistro" element={<KitsRegistro />} />
+          <Route path="/recepcionKit" element={<RecepcionKit />} />
+          <Route path="/panelAcopio" element={<PanelAcopio />} />
+        </Routes>
+      </div>
+    </>
+  );
+}
+
 createRoot(container).render(
   <HashRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/test" element={<Test />} />
-      <Route path="/QRFactory" element={<QRFactory />} />
-      <Route path="/ConsultaQR" element={<ConsultaQR  />} />
-      <Route path="/acopioEscaneo" element={<AcopioEscaneo />} />
-      <Route path="/registroLista" element={<RegistroLista />} />
-      <Route path="/kitsRegistro" element={<KitsRegistro />} />
-      <Route path="/recepcionKit" element={<RecepcionKit />} />
-      <Route path="/panelAcopio" element={<PanelAcopio />} />
-    </Routes>
+    <LayoutWithConditionalHeader />
   </HashRouter>
 );

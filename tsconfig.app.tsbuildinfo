@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/consultaqr.tsx","./src/qrfactory.tsx","./src/test.tsx","./src/main.tsx","./src/vite-env.d.ts"],"version":"5.9.2"}
+{"root":["./src/acopioescaneo.tsx","./src/app.tsx","./src/consultaqr.tsx","./src/headermenu.tsx","./src/kitsregistro.tsx","./src/panelacopio.tsx","./src/qrfactory.tsx","./src/recepcionkit.tsx","./src/registrolista.tsx","./src/test.tsx","./src/main.tsx","./src/vite-env.d.ts"],"version":"5.9.2"}
