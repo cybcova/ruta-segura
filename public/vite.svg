@@ -4,15 +4,15 @@
   <defs>
     <style>
       :root {      
-        --accent: #18635bff;   /* verde petróleo */
-        --accent-2: #13ab99ff; /* aqua */
+        --accent: #188a7dff;   /* verde petróleo */
+        --accent-2: #157a3cff; /* aqua */
 
         --bg: #fff;
       }
       .shield { fill: none; stroke: var(--accent); stroke-width: 16; stroke-linejoin: round; }
-      .pin { fill: var(--accent-2); stroke: var(--accent); stroke-width: 12; }
+      .pin { fill: var(--accent); stroke: var(--accent); stroke-width: 12; }
       .pin-hole { fill: var(--bg); }
-      .badge { fill: var(--accent-2); stroke: var(--accent); stroke-width: 4; }
+      .badge { fill: var(--accent-2); stroke: var(--accent); stroke-width: 0; }
       .check { fill: none; stroke: white; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
     </style>
     <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
@@ -29,7 +29,7 @@
   <!-- Pin de ubicación aún más grande -->
   <g transform="translate(100,85)">
     <path class="pin" d="M0 -50a36 36 0 0 0-36 36c0 30 36 75 36 75s36-45 36-75a36 36 0 0 0-36-36z"/>
-    <circle transform="translate(0,-15)" class="pin-hole" r="15 "/>
+    <circle transform="translate(0,-15)" class="pin-hole" r="20 "/>
   </g>
 
   <!-- Badge circular con paloma más reducida -->
