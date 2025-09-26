@@ -78,7 +78,7 @@ const createOne = async () => {
 
   return (
     <div style={{ maxWidth: 900, margin: "24px auto", padding: 16 }}>
-      <h1 style={{ marginBottom: 12 }}>Generador de QRs + Supabase</h1>
+      <h1 style={{ marginBottom: 12 }}>Generador de QRs</h1>
 
       <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 16 }}>
         <label>
