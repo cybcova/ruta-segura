@@ -21,7 +21,7 @@ function LayoutWithConditionalHeader() {
     "/QRFactory",
     "/acopioEscaneo",
     "/kitsRegistro",
-    "/panelAcopio",
+    "/",
   ]);
 
   const showHeader = showHeaderOn.has(location.pathname);
