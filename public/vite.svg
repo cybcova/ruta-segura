@@ -3,9 +3,10 @@
   <desc id="desc">Escudo estilizado verde/aqua con un pin de ubicación grande en el centro y un badge con paloma más pequeña en la esquina inferior derecha.</desc>
   <defs>
     <style>
-      :root {
-        --accent: #1c5a54ff;   /* verde petróleo */
-        --accent-2: #07897aff; /* aqua */
+      :root {      
+        --accent: #18635bff;   /* verde petróleo */
+        --accent-2: #13ab99ff; /* aqua */
+
         --bg: #fff;
       }
       .shield { fill: none; stroke: var(--accent); stroke-width: 16; stroke-linejoin: round; }
