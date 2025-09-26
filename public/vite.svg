@@ -4,8 +4,8 @@
   <defs>
     <style>
       :root {
-        --accent: #0F766E;   /* verde petróleo */
-        --accent-2: #14B8A6; /* aqua */
+        --accent: #1c5a54ff;   /* verde petróleo */
+        --accent-2: #07897aff; /* aqua */
         --bg: #fff;
       }
       .shield { fill: var(--bg); stroke: var(--accent); stroke-width: 16; stroke-linejoin: round; }
