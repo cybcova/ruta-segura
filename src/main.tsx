@@ -8,6 +8,8 @@ import AcopioEscaneo from "./AcopioEscaneo";
 import RegistroLista from "./RegistroLista";
 import KitsRegistro from "./KitsRegistro";
 import RecepcionKit from "./RecepcionKit";
+import PanelAcopio from "./PanelAcopio";
+
 
 import "./index.css";
 
@@ -24,6 +26,7 @@ createRoot(container).render(
       <Route path="/registroLista" element={<RegistroLista />} />
       <Route path="/kitsRegistro" element={<KitsRegistro />} />
       <Route path="/recepcionKit" element={<RecepcionKit />} />
+      <Route path="/panelAcopio" element={<PanelAcopio />} />
     </Routes>
   </HashRouter>
 );
