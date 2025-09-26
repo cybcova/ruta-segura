@@ -7,11 +7,11 @@
         --accent: #188a7dff;   /* verde petróleo */
         --accent-2: #157a3cff; /* aqua */
 
-        --bg: #fff;
+        --bg: #000000ff;
       }
-      .shield { fill: none; stroke: var(--accent); stroke-width: 16; stroke-linejoin: round; }
+      .shield { fill:  none; stroke: var(--accent); stroke-width: 16; stroke-linejoin: round; }
       .pin { fill: var(--accent); stroke: var(--accent); stroke-width: 12; }
-      .pin-hole { fill: var(--bg); }
+      .pin-hole { fill: white; }
       .badge { fill: var(--accent-2); stroke: var(--accent); stroke-width: 0; }
       .check { fill: none; stroke: white; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
     </style>
