@@ -13,8 +13,51 @@ type KitRow = {
   mensaje: string | null;
 };
 
+const kits: Record<string, string> = {
+    "Kit de Alimentación": `1 kg arroz,
+1 kg frijol o lenteja,
+1 paquete pasta (500 g – 1 kg),
+1 L aceite,
+1 kg azúcar,
+1 kg sal,
+6 latas proteína (atún/sardina),
+2 L leche UHT,
+2 paquetes galletas,
+1 frasco mermelada o café`,
+    "Kit de Hidratación": `12 botellas de 1.5 L (18 L en total)`,
+    "Kit de Higiene Personal": `4 barras jabón,
+1 kg detergente,
+2 cepillos + 2 pastas dentales,
+1 shampoo (250 ml),
+1 paquete toallas sanitarias,
+2 rastrillos,
+4 rollos papel higiénico`,
+    "Kit de Limpieza": `1 escoba,
+1 trapeador,
+1 cubeta,
+2 L cloro,
+2 kg detergente,
+1 rollo bolsas de basura`,
+    "Kit de Primeros Auxilios": `1 botiquín básico,
+1 caja curitas,
+1 paquete gasas,
+1 botella antiséptico (250 ml),
+1 par guantes`,
+    "Kit de Bebé": `1 paquete pañales,
+1 paquete toallitas húmedas,
+1 lata fórmula infantil,
+1 biberón`,
+    "Kit de Abrigo": `2 frazadas,
+1 impermeable,
+2 pares calcetas,
+1 colchoneta`,
+    "Kit Escolar": `1 kit escolar prearmado (cuaderno, colores, lápiz, etc.)`,
+  };
+
+
 export default function KitsRegistro() {
   const [lista, setLista] = useState("");
+  const [categoria, setCategoria] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [msg, setMsg] = useState("");
   const [qrDataUrl, setQrDataUrl] = useState<string | null>(null);
@@ -49,6 +92,7 @@ export default function KitsRegistro() {
         },
         body: JSON.stringify({
           lista_viveres: lista.trim(),
+          categoria : categoria,
           estatus: "registrado",
         }),
       });
@@ -118,8 +162,13 @@ export default function KitsRegistro() {
     doc.text("Es importante para nosotros saber que estos viveres estan llegando a quien lo necesita,", margin, y);
     y += 16;
     doc.text("escanea el qr y responde unas simples preguntas que nos ayudara a seguir ayudando", margin, y);
-    y += 24;
+    y += 32;
 
+    doc.setFontSize(18);
+    doc.text(categoria, margin, y);
+    y += 20;
+
+    doc.setFontSize(12);
     doc.text("Este kit debe contener:", margin, y);
     y += 16;
 
@@ -140,7 +189,7 @@ export default function KitsRegistro() {
     doc.save(`kit-${id}.pdf`);
   };
 
-  return (
+return (
     <div style={{ padding: 16, maxWidth: 720, margin: "0 auto" }}>
       <h1>Registro de Kits Entregados</h1>
       <p style={{ color: "#666", marginTop: -6 }}>
@@ -149,12 +198,34 @@ export default function KitsRegistro() {
 
       <form onSubmit={handleSubmit} style={{ marginTop: 12, display: "grid", gap: 12 }}>
         <label style={{ display: "grid", gap: 6 }}>
+          <span>Categoría:</span>
+          <select
+            value={categoria}
+            onChange={(e) => {
+              const value = e.target.value;
+              setCategoria(value);
+              if (kits[value]) {
+                setLista(kits[value]);
+              }
+            }}
+            style={{ padding: 8, fontSize: 16 }}
+          >
+            <option value="">-- Selecciona una categoría --</option>
+            {Object.keys(kits).map((k) => (
+              <option key={k} value={k}>
+                {k}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label style={{ display: "grid", gap: 6 }}>
           <span>Lista de víveres:</span>
           <textarea
             value={lista}
             onChange={(e) => setLista(e.target.value)}
             placeholder="Arroz 1kg, Frijol 1kg, Agua 2L"
-            rows={5}
+            rows={8}
             style={{ padding: 8, fontSize: 16 }}
           />
         </label>
@@ -171,6 +242,7 @@ export default function KitsRegistro() {
             type="button"
             onClick={() => {
               setLista("");
+              setCategoria("");
               setStatus("idle");
               setMsg("");
               setQrDataUrl(null);
@@ -186,7 +258,13 @@ export default function KitsRegistro() {
       </form>
 
       {msg && (
-        <p style={{ marginTop: 12, color: status === "error" ? "crimson" : "green", whiteSpace: "pre-wrap" }}>
+        <p
+          style={{
+            marginTop: 12,
+            color: status === "error" ? "crimson" : "green",
+            whiteSpace: "pre-wrap",
+          }}
+        >
           {msg}
         </p>
       )}
