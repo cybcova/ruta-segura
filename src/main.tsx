@@ -9,7 +9,6 @@ import AcopioEscaneo from "./AcopioEscaneo";
 import RegistroLista from "./RegistroLista";
 import KitsRegistro from "./KitsRegistro";
 import RecepcionKit from "./RecepcionKit";
-import PanelAcopio from "./PanelAcopio";
 import HeaderMenu from "./HeaderMenu";
 
 import "./index.css";
@@ -29,7 +28,7 @@ function LayoutWithConditionalHeader() {
 
   return (
     <>
-      {showHeader && <HeaderMenu />}
+      { showHeader && <HeaderMenu /> }
       <div style={{ maxWidth: 1024, margin: "0 auto", padding: "12px 16px" }}>
         <Routes>
           <Route path="/" element={<App />} />
@@ -40,7 +39,6 @@ function LayoutWithConditionalHeader() {
           <Route path="/registroLista" element={<RegistroLista />} />
           <Route path="/kitsRegistro" element={<KitsRegistro />} />
           <Route path="/recepcionKit" element={<RecepcionKit />} />
-          <Route path="/panelAcopio" element={<PanelAcopio />} />
         </Routes>
       </div>
     </>

@@ -10,7 +10,7 @@ export default function HeaderMenu() {
     { to: "/QRFactory", text: "QR Factory" },
     { to: "/acopioEscaneo", text: "Escaneo" },
     { to: "/kitsRegistro", text: "Kits" },
-    { to: "/panelAcopio", text: "Panel" },
+    { to: "/", text: "Panel" },
   ];
 
   return (
