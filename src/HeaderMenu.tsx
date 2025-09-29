@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import viteLogo from "/vite.svg";
 
 const HEADER_H = 56; // alto fijo del header
 
@@ -40,7 +41,10 @@ export default function HeaderMenu() {
             color: "#eee",
           }}
         >
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <img src={viteLogo} alt="Ruta Segura" style={{ height: 32 }} />
           <strong>Ruta Segura</strong>
+        </div>
           <button
             aria-label="Abrir menú"
             aria-expanded={open}
