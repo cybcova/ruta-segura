@@ -38,12 +38,20 @@ export default function CamionesMapa() {
     const el = document.getElementById("leaflet-map");
     if (!el) return;
 
-    const map = L.map(el).setView([19.4326, -99.1332], 13); // CDMX centro
+    const map = L.map(el, {
+        center: [19.4326, -99.1332],
+        zoom: 13,
+        zoomControl: false, // desactiva el default
+    });
+        
+    // agrega el control donde lo quieras
+    L.control.zoom({ position: "bottomright" }).addTo(map);
+    
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "© OpenStreetMap contributors",
-      maxZoom: 19
+      maxZoom: 19,
     }).addTo(map);
-
+    
     mapRef.current = map;
     layerRef.current = L.layerGroup().addTo(map);
   }, []);
