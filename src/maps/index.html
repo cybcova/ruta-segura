@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Ruta en Leaflet</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>#map { height: 100vh; }</style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const coords = [[19.43249,-99.13285],
+[19.4325,-99.13282],
+[19.43253,-99.1328],
+[19.43254,-99.13277],
+[19.43254,-99.13273]
+    ];
+
+    const map = L.map('map').setView(coords[0], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Dibuja la ruta
+    L.polyline(coords, { color: 'blue' }).addTo(map);
+
+    // Marca inicio y fin
+    L.marker(coords[0]).addTo(map).bindPopup("Inicio");
+    L.marker(coords[coords.length-1]).addTo(map).bindPopup("Fin");
+
+    map.fitBounds(coords);
+  </script>
+</body>
+</html>

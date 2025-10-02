@@ -10,6 +10,7 @@ import RegistroLista from "./RegistroLista";
 import KitsRegistro from "./KitsRegistro";
 import RecepcionKit from "./RecepcionKit";
 import HeaderMenu from "./HeaderMenu";
+import CamionesMapa from "./CamionesMapa";
 
 import "./index.css";
 
@@ -39,6 +40,7 @@ function LayoutWithConditionalHeader() {
           <Route path="/registroLista" element={<RegistroLista />} />
           <Route path="/kitsRegistro" element={<KitsRegistro />} />
           <Route path="/recepcionKit" element={<RecepcionKit />} />
+          <Route path="/camionesMapa" element={<CamionesMapa />} />
         </Routes>
       </div>
     </>
