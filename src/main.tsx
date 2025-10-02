@@ -19,10 +19,12 @@ const container = document.getElementById("root") as HTMLElement;
 function LayoutWithConditionalHeader() {
   const location = useLocation();
   const showHeaderOn = new Set([
+    "/",
     "/QRFactory",
     "/acopioEscaneo",
     "/kitsRegistro",
-    "/",
+    "/camionesMapa",
+
   ]);
 
   const showHeader = showHeaderOn.has(location.pathname);

@@ -8,10 +8,11 @@ export default function HeaderMenu() {
   const [open, setOpen] = useState(false);
 
   const items = [
+    { to: "/", text: "Panel" },
     { to: "/QRFactory", text: "QR Factory" },
     { to: "/acopioEscaneo", text: "Escaneo" },
     { to: "/kitsRegistro", text: "Kits" },
-    { to: "/", text: "Panel" },
+    { to: "/camionesMapa", text: "Rutas" },
   ];
 
   return (
