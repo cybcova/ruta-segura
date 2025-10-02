@@ -60,7 +60,7 @@ export default function CamionesMapa() {
   const fetchCamiones = async () => {
     setError("");
     try {
-      const resp = await fetch(`${base}/rest/v1/camiones`, {
+      const resp = await fetch(`${base}/rest/v1/camiones?order=id.asc`, {
         headers: {
           "Content-Type": "application/json",
           apikey: anon,
