@@ -69,7 +69,7 @@ export default function CamionesMapa() {
       });
       if (!resp.ok) throw new Error(`HTTP ${resp.status}: ${await resp.text()}`);
       const data: Camion[] = await resp.json();
-      const items = Array.isArray(data) ? data.sort((a,b) => a.nombre.localeCompare(b.nombre)) : [];
+      const items = Array.isArray(data) ? data.sort((a, b) => a.id - b.id) : [];
       setCamiones(items);
       if (items.length && camionId == null) setCamionId(items[0].id);
     } catch (e: any) {
