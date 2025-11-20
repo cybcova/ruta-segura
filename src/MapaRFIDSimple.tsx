@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import L, { Map as LMap, LayerGroup, CircleMarker } from "leaflet";
+import L, { Map as LMap, LayerGroup } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 type Movimiento = {
@@ -75,7 +75,7 @@ export default function MapaRFIDSimple() {
     }
   };
 
-  // Dibuja puntos rojos, más intenso donde hay acumulación
+  // Dibujar puntos rojos
   const drawPoints = (data: Movimiento[]) => {
     const map = mapRef.current;
     const layer = layerRef.current;
@@ -83,36 +83,32 @@ export default function MapaRFIDSimple() {
 
     layer.clearLayers();
 
-    if (!data.length) return;
-
     data.forEach(p => {
       if (typeof p.lat === "number" && typeof p.lon === "number") {
         L.circleMarker([p.lat, p.lon], {
           radius: 6,
           color: "red",
           fillColor: "red",
-          fillOpacity: 0.4, // opaco para que acumulación = intensidad
+          fillOpacity: 0.4, // superposición = más intensidad
           weight: 1,
         }).addTo(layer);
       }
     });
 
-    // Fit bounds si hay puntos
-    const coords = data.map(d => [d.lat, d.lon]) as [number, number][];
-    if (coords.length > 0) {
+    if (data.length > 0) {
+      const coords = data.map(p => [p.lat, p.lon]) as [number, number][];
       const bounds = L.latLngBounds(coords);
       map.fitBounds(bounds, { padding: [20, 20] });
     }
   };
 
-  // Se consulta automáticamente al entrar
   useEffect(() => {
     fetchMovs();
   }, []);
 
   return (
     <div style={{ display: "grid", gridTemplateRows: "auto 1fr", height: "100dvh" }}>
-      <div style={{ padding: "12px 16px", borderBottom: "1px solid #eee" , display: "grid", gap: 8 }}>
+      <div style={{ padding: "12px 16px", borderBottom: "1px solid #eee" }}>
         <h2 style={{ margin: 0 }}>Movimientos RFID (Mapa simple)</h2>
 
         <button
