@@ -4,8 +4,8 @@
   <defs>
     <style>
       :root {      
-        --accent: #188a7dff;   /* verde petróleo */
-        --accent-2: #157a3cff; /* aqua */
+        --accent: #66188aff;   /* verde petróleo */
+        --accent-2: #188a88ff; /* aqua */
 
         --bg: #fff;
       }
