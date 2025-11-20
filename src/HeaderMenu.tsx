@@ -13,6 +13,7 @@ export default function HeaderMenu() {
     { to: "/acopioEscaneo", text: "Escaneo" },
     { to: "/kitsRegistro", text: "Kits" },
     { to: "/camionesMapa", text: "Rutas" },
+    { to: "/MapaRFIDSimple", text: "Movimiento RFID" },
   ];
 
   return (

@@ -11,6 +11,7 @@ import KitsRegistro from "./KitsRegistro";
 import RecepcionKit from "./RecepcionKit";
 import HeaderMenu from "./HeaderMenu";
 import CamionesMapa from "./CamionesMapa";
+import MapaRFIDSimple from "./MapaRFIDSimple";
 
 import "./index.css";
 
@@ -24,6 +25,7 @@ function LayoutWithConditionalHeader() {
     "/acopioEscaneo",
     "/kitsRegistro",
     "/camionesMapa",
+    "/MapaRFIDSimple",
 
   ]);
 
@@ -43,6 +45,7 @@ function LayoutWithConditionalHeader() {
           <Route path="/kitsRegistro" element={<KitsRegistro />} />
           <Route path="/recepcionKit" element={<RecepcionKit />} />
           <Route path="/camionesMapa" element={<CamionesMapa />} />
+          <Route path="/MapaRFIDSimple" element={<MapaRFIDSimple />} />
         </Routes>
       </div>
     </>
